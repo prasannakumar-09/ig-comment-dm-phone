@@ -4,7 +4,7 @@ Someone comments a keyword on your reel and gets your link in their DMs within 5
 
 **This version is for people with only a phone.** No laptop, no terminal, no coding.
 
-📱 **Step-by-step phone guide:** <https://prasannakumar-09.github.io/ig-comment-dm-phone/>
+📱 **Step-by-step phone guide:** <https://comment-dm-guide.myadaboinaswathi.workers.dev/phone/>
 
 ## ⚡ Easiest: let ChatGPT guide you
 
@@ -12,13 +12,13 @@ Paste this into ChatGPT (or Gemini, Claude):
 
 ```text
 Help me set up this Instagram auto-DM tool using only my phone.
-Guide: https://prasannakumar-09.github.io/ig-comment-dm-phone/
+Guide: https://comment-dm-guide.myadaboinaswathi.workers.dev/phone/
 Repo: https://github.com/prasannakumar-09/ig-comment-dm-phone
 Read the AI instructions first: https://raw.githubusercontent.com/prasannakumar-09/ig-comment-dm-phone/main/AI-GUIDE.md
 Start by showing me the requirements list and wait for my answer. Then guide me one step at a time in simple words.
 ```
 
-Never paste your token or passwords into the chat. They go only into the Cloudflare form.
+> 🔒 **Keep your Instagram token private. Don't share it with anyone** (not us, not in DMs, comments or ChatGPT). It goes only into the box in your own Cloudflare account. Nobody here will ever ask for it or for your Instagram password. Shared it by mistake? Generate a new one in Meta.
 
 ## Or do it yourself
 

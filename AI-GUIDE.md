@@ -3,7 +3,7 @@
 **You are helping a person set up this tool using only their phone.** You cannot click or run anything for them. Your job is to explain each step in plain, short words and wait for them.
 
 The tool: when someone comments a keyword on their Instagram post, it DMs that person a link. It runs free on their own Cloudflare account, uses the official Instagram API, and has a web dashboard.
-Human guide with the same steps: https://prasannakumar-09.github.io/ig-comment-dm-phone/
+Human guide with the same steps: https://comment-dm-guide.myadaboinaswathi.workers.dev/phone/
 
 ## Rules for you
 

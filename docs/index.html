@@ -67,6 +67,10 @@
   .btns { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0 4px; }
   .copyline { display:flex; align-items:center; gap:8px; margin:8px 0; background:var(--code); border:1px solid var(--line); border-radius:12px; padding:6px 6px 6px 14px; }
   .copyline code { flex:1; min-width:0; overflow-wrap:anywhere; background:none; padding:0; }
+  .prompt { position:relative; background:var(--code); border:1px solid var(--line); border-radius:14px; padding:16px 16px 60px; margin:12px 0 0;
+    font:500 14px/1.55 "JetBrains Mono", ui-monospace, monospace; white-space:pre-wrap; overflow-wrap:anywhere; color:var(--ink); }
+  .prompt .copy { position:absolute; right:10px; bottom:10px; }
+  .copy.done { background:var(--ok); }
   .copy { border:0; border-radius:10px; background:var(--accent); color:#fff; font:600 15px Inter, sans-serif; padding:8px 14px; min-height:44px; cursor:pointer; flex:none; }
   figure { margin:14px 0 0; }
   figure img { display:block; width:100%; max-width:360px; border-radius:14px; border:1px solid var(--line); }
@@ -89,6 +93,16 @@
   <h1>Set up Instagram auto-DM using only your phone</h1>
   <p class="lead">When someone comments a word like <b>“AUTO”</b> on your reel, they get your link in their DMs within 5 minutes. Free, on your own accounts. You only tap and paste. No coding.</p>
   <p>Have a laptop? The <a href="https://prasannakumar-09.github.io/ig-comment-dm/">laptop guide</a> is faster: an AI sets it up for you.</p>
+
+  <h2 id="ai">Easiest: let ChatGPT guide you</h2>
+  <p>Copy this message and paste it into <b>ChatGPT</b> (or Gemini, Claude). It reads the guide, shows you what you need, then walks you through each step and waits for you.</p>
+  <div class="prompt" id="prompt">Help me set up this Instagram auto-DM tool using only my phone.
+Guide: https://prasannakumar-09.github.io/ig-comment-dm-phone/
+Repo: https://github.com/prasannakumar-09/ig-comment-dm-phone
+Read the AI instructions first: https://raw.githubusercontent.com/prasannakumar-09/ig-comment-dm-phone/main/AI-GUIDE.md
+Start by showing me the requirements list and wait for my answer. Then guide me one step at a time in simple words.<button class="copy" type="button" id="copy">Copy</button></div>
+  <div class="note warn"><p>🔒 Never paste your <b>token</b> or passwords into ChatGPT. You type them only into the Cloudflare form in step 4.</p></div>
+  <p style="margin-top:14px">Prefer to do it yourself? Follow the steps below.</p>
 
   <h2 id="need">What you need</h2>
   <div class="card">
@@ -240,6 +254,16 @@
     });
   });
   paint();
+
+  // Copy the ChatGPT message (without the button's own label).
+  const btn = document.getElementById('copy');
+  btn.addEventListener('click', async () => {
+    const node = document.getElementById('prompt').firstChild;
+    try { await navigator.clipboard.writeText(node.textContent.trim()); }
+    catch { const r = document.createRange(); r.selectNodeContents(node); const s = getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); }
+    btn.textContent = 'Copied ✓'; btn.classList.add('done');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 2000);
+  });
 </script>
 </body>
 </html>

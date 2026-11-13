@@ -124,7 +124,7 @@
       <h3>Make two free accounts</h3>
       <p>Use the same email for both. Verify each email when it asks (check your inbox).</p>
       <ol class="do">
-        <li><b>GitHub:</b> it stores your own copy of the tool.</li>
+        <li><b>GitHub:</b> a free place to keep your own copy of the tool's code. The Deploy button in step 4 copies the code there for you.</li>
         <li><b>Cloudflare:</b> it runs the tool online, every 5 minutes, for free.</li>
       </ol>
       <div class="btns">
@@ -156,7 +156,13 @@
 
     <li data-step="deploy">
       <h3>Tap the Deploy button and fill 3 boxes</h3>
-      <p>This makes your own copy of the tool and puts it online. Open it in a <b>new tab</b>:</p>
+      <p>You don't copy any code yourself. This button does it for you:</p>
+      <ol class="do">
+        <li>It <b>creates a new repo in your GitHub</b> (named <code>ig-comment-dm</code>) and copies all the code into it: the auto-DM checker and the dashboard.</li>
+        <li>It <b>puts that code online</b> on your Cloudflare account, so you get your own dashboard link.</li>
+      </ol>
+      <p>Afterwards you'll see this new repo in your GitHub. That's your copy. You never need to open or change it.</p>
+      <p>Open the button in a <b>new tab</b>:</p>
       <div class="btns"><a class="btn accent" href="https://deploy.workers.cloudflare.com/?url=https://github.com/prasannakumar-09/ig-comment-dm-phone" target="_blank" rel="noopener">Deploy to Cloudflare ↗</a></div>
       <ol class="do">
         <li>Log in to <b>Cloudflare</b> if it asks.</li>

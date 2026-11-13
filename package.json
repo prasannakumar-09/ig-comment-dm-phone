@@ -1,0 +1,18 @@
+{
+  "name": "ig-comment-dm",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.160.1"
+  },
+  "cloudflare": {
+    "bindings": {
+      "IG_USER_ID": { "description": "Your Instagram account number. In the Meta app, it's the number next to your account under Generate access tokens (looks like 17841...)." },
+      "IG_TOKEN": { "description": "Your Instagram token. In the Meta app, tap Generate token and copy it. Paste it only here." },
+      "DASH_PASSWORD": { "description": "Make up a new password for your dashboard (letters, numbers, dashes). Not your Instagram password." }
+    }
+  }
+}

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Instagram Auto-DM: Phone Setup</title>
+<meta name="description" content="Set up a free Instagram comment-to-DM tool using only your phone. No laptop, no coding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#fbf8f3; --surface:#ffffff; --ink:#1d1a17; --ink-2:#4b4540; --muted:#857d75; --line:#ece4d9;
+    --accent:#e2621b; --accent-soft:#fdebdf; --ok:#1f8a4c; --ok-soft:#e5f5ec; --warn-soft:#fff4dc; --code:#f4eee6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#141210; --surface:#1c1916; --ink:#f3eee8; --ink-2:#c9c0b6; --muted:#958b80; --line:#2e2925;
+      --accent:#ff8a4c; --accent-soft:#3a2216; --ok:#4cc985; --ok-soft:#14301f; --warn-soft:#33280e; --code:#24201c;
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width:680px; margin:0 auto; padding:40px 16px 80px; }
+  a { color:var(--accent); text-underline-offset:3px; }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:6px; }
+  h1 { font-family:"Instrument Serif", Georgia, serif; font-weight:400; font-size:clamp(38px, 9vw, 56px); line-height:1.04; letter-spacing:-.01em; margin:14px 0 16px; }
+  h2 { font-family:"Instrument Serif", Georgia, serif; font-weight:400; font-size:32px; line-height:1.1; margin:52px 0 8px; }
+  h3 { font-size:18px; margin:0 0 6px; }
+  p { margin:0 0 12px; color:var(--ink-2); }
+  .eyebrow { font-size:14px; font-weight:600; color:var(--muted); }
+  .lead { font-size:19px; color:var(--ink-2); }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:20px; margin:18px 0; }
+  .need { list-style:none; padding:0; margin:0; display:grid; gap:12px; }
+  .need li { display:grid; grid-template-columns:28px 1fr; gap:10px; }
+  .need .ic { font-size:20px; line-height:1.4; }
+  .need small { display:block; color:var(--muted); font-size:14px; }
+
+  .progress { position:sticky; top:0; z-index:5; background:var(--bg); padding:10px 0; margin:24px 0 0; border-bottom:1px solid var(--line); }
+  .progress .row { display:flex; justify-content:space-between; font-size:14px; font-weight:600; margin-bottom:6px; }
+  .progress .track { height:8px; border-radius:99px; background:var(--line); overflow:hidden; }
+  .progress .fill { height:100%; width:0; background:var(--accent); border-radius:99px; }
+
+  ol.steps { list-style:none; counter-reset:s; padding:0; margin:22px 0 0; }
+  ol.steps > li { counter-increment:s; position:relative; padding:0 0 34px 52px; }
+  ol.steps > li::before { content:counter(s); position:absolute; left:0; top:-4px; width:38px; height:38px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; display:grid; place-items:center; }
+  ol.steps > li.is-done::before { content:"✓"; background:var(--ok); }
+  ol.steps > li:not(:last-child)::after { content:""; position:absolute; left:18px; top:40px; bottom:6px; width:2px; background:var(--line); }
+  ol.do { padding-left:20px; margin:8px 0 0; color:var(--ink-2); }
+  ol.do li { margin:0 0 8px; padding-left:2px; }
+  ol.do b { color:var(--ink); }
+  .done-box { display:flex; align-items:center; gap:10px; margin:14px 0 0; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:var(--surface); font-weight:600; cursor:pointer; min-height:48px; }
+  .done-box input { width:22px; height:22px; accent-color:var(--ok); margin:0; }
+  li.is-done .done-box { background:var(--ok-soft); border-color:transparent; }
+
+  .note { border-radius:14px; padding:14px 16px; margin:14px 0 0; font-size:15.5px; }
+  .note.warn { background:var(--warn-soft); }
+  .note.ok { background:var(--ok-soft); }
+  .note.tip { background:var(--accent-soft); }
+  .note p { margin:0; color:var(--ink); }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; font-weight:600; border-radius:12px; padding:12px 18px; min-height:48px; }
+  .btn.solid { background:var(--ink); color:var(--bg); }
+  .btn.accent { background:var(--accent); color:#fff; }
+  .btn.line { border:1px solid var(--line); background:var(--surface); color:var(--ink); }
+  .btns { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0 4px; }
+  .copyline { display:flex; align-items:center; gap:8px; margin:8px 0; background:var(--code); border:1px solid var(--line); border-radius:12px; padding:6px 6px 6px 14px; }
+  .copyline code { flex:1; min-width:0; overflow-wrap:anywhere; background:none; padding:0; }
+  .copy { border:0; border-radius:10px; background:var(--accent); color:#fff; font:600 15px Inter, sans-serif; padding:8px 14px; min-height:44px; cursor:pointer; flex:none; }
+  figure { margin:14px 0 0; }
+  figure img { display:block; width:100%; max-width:360px; border-radius:14px; border:1px solid var(--line); }
+  figure figcaption { font-size:14px; color:var(--muted); margin-top:6px; }
+  details { border-top:1px solid var(--line); padding:14px 0; }
+  details:last-of-type { border-bottom:1px solid var(--line); }
+  summary { cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; gap:12px; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; color:var(--accent); font-size:22px; line-height:1; }
+  details[open] summary::after { content:"–"; }
+  details p { margin:10px 0 0; }
+  code { font:500 .9em "JetBrains Mono", ui-monospace, monospace; background:var(--code); padding:2px 6px; border-radius:6px; }
+  footer { margin-top:56px; color:var(--muted); font-size:14px; }
+  @media (prefers-reduced-motion: no-preference) { .progress .fill { transition:width .25s; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">📱 Phone version · No laptop needed · About 40 minutes</div>
+  <h1>Set up Instagram auto-DM using only your phone</h1>
+  <p class="lead">When someone comments a word like <b>“AUTO”</b> on your reel, they get your link in their DMs within 5 minutes. Free, on your own accounts. You only tap and paste. No coding.</p>
+  <p>Have a laptop? The <a href="https://prasannakumar-09.github.io/ig-comment-dm/">laptop guide</a> is faster: an AI sets it up for you.</p>
+
+  <h2 id="need">What you need</h2>
+  <div class="card">
+    <ul class="need">
+      <li><span class="ic">📱</span><span>A phone with <b>Chrome</b> or <b>Safari</b><small>Android or iPhone. Use the browser, not an app, for the Meta and Cloudflare pages</small></span></li>
+      <li><span class="ic">📸</span><span>An <b>Instagram professional account</b> (Creator or Business), set to <b>public</b></span></li>
+      <li><span class="ic">👤</span><span>A <b>Facebook account</b> you can log in to<small>Meta needs it for the free developer app that gives the DM permission</small></span></li>
+      <li><span class="ic">📧</span><span>An <b>email address</b><small>For two free accounts you'll make in step 2: GitHub and Cloudflare</small></span></li>
+      <li><span class="ic">👥</span><span>A <b>second Instagram account</b><small>A friend's or a spare one, to send the test comment</small></span></li>
+      <li><span class="ic">⏱️</span><span>About <b>40 minutes</b> and a charged phone</span></li>
+    </ul>
+  </div>
+  <div class="note tip"><p>💡 <b>Turn on “Desktop site”</b> when a page looks broken or a button is missing. Chrome: tap <b>⋮</b> → <b>Desktop site</b>. Safari: tap <b>aA</b> → <b>Request Desktop Website</b>.</p></div>
+  <div class="note warn"><p>🔒 Your Instagram <b>token</b> is like a password. You paste it in <b>one place only</b>: the Cloudflare form in step 4. Never in a chat, email or notes app.</p></div>
+
+  <div class="progress" aria-live="polite">
+    <div class="row"><span>Your progress</span><span id="count">0 of 6 done</span></div>
+    <div class="track"><div class="fill" id="fill"></div></div>
+  </div>
+
+  <ol class="steps" id="steps">
+    <li data-step="ig">
+      <h3>Change 3 settings in the Instagram app</h3>
+      <ol class="do">
+        <li><b>Professional account:</b> Profile → <b>☰</b> → Settings and activity → Account type and tools → <b>Switch to professional account</b> → Creator or Business. Make sure the account is <b>public</b>.</li>
+        <li><b>Allow DMs from tools:</b> <b>☰</b> → Settings and activity → Messages and story replies → Message controls → Connected tools → <b>Allow access to messages</b> → On.</li>
+        <li><b>Spam filter off:</b> <b>☰</b> → Settings and activity → Hidden words → turn <b>off</b> “Hide comments” and “Advanced comment filtering”. Otherwise Instagram hides some comments and those people never get a DM.</li>
+      </ol>
+      <label class="done-box"><input type="checkbox"> I changed all 3</label>
+    </li>
+
+    <li data-step="accounts">
+      <h3>Make two free accounts</h3>
+      <p>Use the same email for both. Verify each email when it asks (check your inbox).</p>
+      <ol class="do">
+        <li><b>GitHub:</b> it stores your own copy of the tool.</li>
+        <li><b>Cloudflare:</b> it runs the tool online, every 5 minutes, for free.</li>
+      </ol>
+      <div class="btns">
+        <a class="btn solid" href="https://github.com/signup" target="_blank" rel="noopener">Sign up for GitHub ↗</a>
+        <a class="btn line" href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Sign up for Cloudflare ↗</a>
+      </div>
+      <figure><img src="shots/cloudflare-signup.png" alt="Cloudflare sign-up page on a phone" loading="lazy" onerror="this.parentNode.remove()"><figcaption>Cloudflare sign-up: just email and a password</figcaption></figure>
+      <label class="done-box"><input type="checkbox"> Both accounts are ready</label>
+    </li>
+
+    <li data-step="meta">
+      <h3>Make your Meta app (in the browser)</h3>
+      <p>This is the longest step. Turn on <b>Desktop site</b> for these pages.</p>
+      <ol class="do">
+        <li>Open <a href="https://developers.facebook.com/apps" target="_blank" rel="noopener">developers.facebook.com/apps</a> and log in with Facebook. First time? Tap <b>Get started</b>, accept and verify your phone or email.</li>
+        <li>Tap <b>Create App</b>. Name it anything (like <code>comment dm</code>) and add your email.</li>
+        <li>Use case: <b>Manage messaging &amp; content on Instagram</b>. App type <b>Business</b> if it asks. If it asks for a <b>business portfolio</b>, pick or create one.</li>
+        <li>In the app: <b>Use cases</b> → <b>Customize</b> (the Instagram one) → <b>API setup with Unified login</b>.</li>
+        <li>Choose <b>Instagram API (unified login)</b> → <b>Edit permissions</b>. Keep only <code>instagram_basic</code>, <code>instagram_manage_messages</code> and <code>instagram_manage_comments</code>. Untick the rest and save.</li>
+        <li>Under “Generate access tokens”, tap the blue <b>Roles</b> link → <b>Add Instagram Testers</b> → type your Instagram username → Submit.</li>
+        <li>Accept the invite: open the link below (logged in to that Instagram account) → <b>Tester Invites</b> → <b>Accept</b>.
+          <div class="copyline"><code>instagram.com/accounts/manage_access</code><a class="copy" href="https://www.instagram.com/accounts/manage_access/" target="_blank" rel="noopener" style="text-decoration:none;display:grid;place-items:center">Open</a></div></li>
+        <li>Go back to the Meta tab and <b>reload</b>. Your account now shows with a <b>number</b> next to it (like <code>17841…</code>). <b>Long-press to copy it</b> or write it down. That's your <b>Instagram account number</b>.</li>
+      </ol>
+      <div class="note tip"><p>📌 <b>Keep this Meta tab open.</b> You'll come back to it for the token in step 4. Don't tap Generate token yet.</p></div>
+      <p style="margin-top:12px">Meta renames buttons often. If something looks different, look for <b>“Unified login”</b> and <b>“Generate access tokens”</b>.</p>
+      <label class="done-box"><input type="checkbox"> I have my account number</label>
+    </li>
+
+    <li data-step="deploy">
+      <h3>Tap the Deploy button and fill 3 boxes</h3>
+      <p>This makes your own copy of the tool and puts it online. Open it in a <b>new tab</b>:</p>
+      <div class="btns"><a class="btn accent" href="https://deploy.workers.cloudflare.com/?url=https://github.com/prasannakumar-09/ig-comment-dm-phone" target="_blank" rel="noopener">Deploy to Cloudflare ↗</a></div>
+      <ol class="do">
+        <li>Log in to <b>Cloudflare</b> if it asks.</li>
+        <li>Tap <b>Connect GitHub</b> (or similar) → log in → <b>Install &amp; Authorize</b>. This lets Cloudflare save your copy in your GitHub.</li>
+        <li>Leave the names as they are. If it asks for a <b>workers.dev</b> name, type any name (like your username).</li>
+        <li>Fill the 3 boxes:
+          <ul style="margin:8px 0 0;padding-left:18px">
+            <li><code>IG_USER_ID</code>: your account number from step 3.</li>
+            <li><code>DASH_PASSWORD</code>: <b>make up</b> a new password for your dashboard (letters, numbers, dashes). Not your Instagram password. Write it down.</li>
+            <li><code>IG_TOKEN</code>: switch to your <b>Meta tab</b> → tap <b>Generate token</b> → approve → tick the box → <b>Copy</b>. Switch back and paste it here.</li>
+          </ul>
+        </li>
+        <li>Tap the <b>Deploy</b> button at the bottom. Wait 2–3 minutes until it says it's done.</li>
+      </ol>
+      <figure><img src="shots/deploy-form.png" alt="Cloudflare deploy page with the three boxes" loading="lazy" onerror="this.parentNode.remove()"><figcaption>The deploy page with the 3 boxes</figcaption></figure>
+      <div class="note warn"><p>🔒 The token box is the <b>only</b> place your token goes. Cloudflare stores it encrypted. Nobody, including whoever shared this guide, can see it.</p></div>
+      <label class="done-box"><input type="checkbox"> It says deployed</label>
+    </li>
+
+    <li data-step="dashboard">
+      <h3>Open your dashboard</h3>
+      <ol class="do">
+        <li>On the finished Cloudflare page, tap your link. It looks like <code>ig-comment-dm.yourname.workers.dev</code>.
+          <br><small style="color:var(--muted)">Can't find it later? Cloudflare → <b>Workers &amp; Pages</b> → <b>ig-comment-dm</b> → the link under Domains.</small></li>
+        <li>Log in with <b>any username</b> and your <b>dashboard password</b>.</li>
+        <li>Tap <b>Run now</b>. Your <b>@username</b> appears at the top. (If it says “Try again in a minute”, wait a minute.)</li>
+        <li>Save it: Chrome <b>⋮</b> → <b>Add to Home screen</b> (Safari: Share → <b>Add to Home Screen</b>). Now it opens like an app.</li>
+      </ol>
+      <label class="done-box"><input type="checkbox"> I see my @username</label>
+    </li>
+
+    <li data-step="test">
+      <h3>Add a keyword, test, go live</h3>
+      <ol class="do">
+        <li><b>Keyword rules</b> → <b>New rule</b> → keyword <code>AUTO</code> (or pick <b>Any emoji</b>) → write the DM with your link → <b>Save</b>.</li>
+        <li>Leave <b>Dry run</b> on. From your <b>second Instagram account</b>, comment <code>AUTO</code> on one of your posts.</li>
+        <li>Within 5 minutes, <b>Activity</b> shows it as <i>Dry run</i>. Nothing was sent yet.</li>
+        <li>Tap <b>Go live</b>, then comment again with a <b>new comment</b>. The second account gets the DM (check <b>Requests</b> if it doesn't follow you). 🎉</li>
+      </ol>
+      <label class="done-box"><input type="checkbox"> The test DM arrived</label>
+      <div class="note ok"><p>Done. It now checks your comments every 5 minutes, day and night, with your phone on or off.</p></div>
+    </li>
+  </ol>
+
+  <h2>Good to know</h2>
+  <details><summary>How fast does the DM arrive?</summary><p>Within <b>5 minutes</b> of the comment, only for comments from the <b>last 7 days</b>. Each comment gets <b>one DM, ever</b>, so use a new comment for each test.</p></details>
+  <details><summary>Someone says they got nothing</summary><p>Ask them to check <b>Requests</b> in their DMs. Also make sure <b>Hidden words → Hide comments</b> is off (step 1). Instagram hides “spammy” comments from apps.</p></details>
+  <details><summary>Dashboard says “Invalid OAuth access token”</summary><p>The token is wrong. In Meta, tap <b>Generate token</b> again and copy it. Then in Cloudflare: <b>Workers &amp; Pages</b> → <b>ig-comment-dm</b> → <b>Settings</b> → <b>Variables and Secrets</b> → edit <code>IG_TOKEN</code> → paste → <b>Deploy</b>.</p></details>
+  <details><summary>I forgot my dashboard password</summary><p>Set a new one the same way: <b>Settings</b> → <b>Variables and Secrets</b> → edit <code>DASH_PASSWORD</code> → <b>Deploy</b>.</p></details>
+  <details><summary>The deploy failed</summary><p>Open <b>Workers &amp; Pages</b> → <b>ig-comment-dm</b> → <b>Deployments</b> (or Builds) and tap <b>Retry</b>. If the error says a name is taken, deploy again with a different name.</p></details>
+  <details><summary>Is it really free and safe?</summary><p>Yes. It runs on your <b>own</b> free Cloudflare account and uses Instagram's <b>official</b> API. You never share your Instagram password.</p></details>
+
+  <footer>Made by <a href="https://www.instagram.com/prasanna_kumar_m96/" target="_blank" rel="noopener">@prasanna_kumar_m96</a>. Not affiliated with Meta or Instagram. Code: <a href="https://github.com/prasannakumar-09/ig-comment-dm-phone" target="_blank" rel="noopener">GitHub</a>.</footer>
+</main>
+<script>
+  // Progress checklist, remembered on this phone only.
+  const KEY = 'igdm-phone-steps';
+  const steps = [...document.querySelectorAll('#steps > li')];
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch {}
+  const paint = () => {
+    const done = steps.filter((li) => li.classList.contains('is-done')).length;
+    document.getElementById('count').textContent = `${done} of ${steps.length} done`;
+    document.getElementById('fill').style.width = `${(done / steps.length) * 100}%`;
+  };
+  steps.forEach((li) => {
+    const box = li.querySelector('.done-box input');
+    box.checked = !!saved[li.dataset.step];
+    li.classList.toggle('is-done', box.checked);
+    box.addEventListener('change', () => {
+      li.classList.toggle('is-done', box.checked);
+      saved[li.dataset.step] = box.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch {}
+      paint();
+    });
+  });
+  paint();
+</script>
+</body>
+</html>

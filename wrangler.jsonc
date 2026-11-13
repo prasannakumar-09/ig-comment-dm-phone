@@ -1,0 +1,11 @@
+{
+  // Deployed by the "Deploy to Cloudflare" button. Cloudflare creates the KV storage and fills in its id.
+  "name": "ig-comment-dm",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "kv_namespaces": [{ "binding": "KV" }],
+  "version_metadata": { "binding": "VERSION" },
+  "triggers": { "crons": ["*/5 * * * *"] }
+  // IG_USER_ID, IG_TOKEN and DASH_PASSWORD are asked for on the deploy page (see .dev.vars.example). Never put them here.
+}

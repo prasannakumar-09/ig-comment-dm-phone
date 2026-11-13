@@ -1,0 +1,3 @@
+IG_USER_ID= # Your Instagram account number from the Meta app (looks like 17841...)
+IG_TOKEN= # The long token from Meta: Generate token. Keep it private.
+DASH_PASSWORD= # Make up a new password for your dashboard (letters, numbers, dashes)

@@ -60,7 +60,7 @@ Explain: they don't copy any code. The button creates a repo named `ig-comment-d
 
 ### 5. Dashboard
 1. Tap the link Cloudflare shows: `ig-comment-dm.<their-name>.workers.dev`. (Later: Cloudflare → Workers & Pages → ig-comment-dm → link under Domains.)
-2. Log in with **any username** + their dashboard password.
+2. On the sign-in page, enter their dashboard password and tap **Sign in** (stays signed in for 30 days).
 3. Tap **Run now**: their **@username** appears at the top. "Try again in a minute" → wait a minute.
 4. Add to home screen (Chrome ⋮ → Add to Home screen; Safari Share → Add to Home Screen).
 
